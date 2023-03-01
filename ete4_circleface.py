@@ -3,7 +3,7 @@
 from ete4 import Tree
 from ete4.smartview import TreeLayout, CircleFace
 
-TREEFILE = './basic_example1_annotated.nw'
+TREEFILE = 'example_data/tree.nw'
 
 popup_prop_keys = [
     'name', 'dist', 'support', 'sample1',

@@ -1,12 +1,12 @@
 from ete4 import Tree
 # from staple_layouts import LayoutBarplot
 from ete4.smartview import TreeStyle, NodeStyle, TreeLayout
-from ete4.smartview  import (RectFace, CircleFace, SelectedFace, 
+from ete4.smartview  import (RectFace, CircleFace, SelectedFace,
                             SelectedCircleFace, SelectedRectFace)
 
 
 
-TREEFILE = './basic_example1_annotated.nw'
+TREEFILE = 'example_data/tree.nw'
 
 popup_prop_keys = [
                 'name', 'dist', 'support', 'sample1',
@@ -22,7 +22,7 @@ def get_face(level, prop):
         if node.is_leaf():
             node_val = float(node.props.get(prop))
             if node_val > 0.50:
-                face = SelectedCircleFace(prop, radius=20, 
+                face = SelectedCircleFace(prop, radius=20,
                 padding_x=2, padding_y=2)
             else:
                 face = SelectedRectFace(prop, width=15, height=15,

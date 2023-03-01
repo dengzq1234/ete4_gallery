@@ -5,7 +5,7 @@ from ete4.smartview  import CircleFace, PieChartFace
 
 
 
-TREEFILE = './basic_example1_annotated.nw'
+TREEFILE = 'example_data/tree.nw'
 
 popup_prop_keys = [
                 'name', 'dist', 'support', 'sample1',
@@ -24,7 +24,7 @@ def get_face(level, prop):
                 ["pie2", 10, "blue", None],
                 ["pie3", 20, "green", None],
                 ]
-            face = PieChartFace(radius=20, data=piechart_data, name=prop, 
+            face = PieChartFace(radius=20, data=piechart_data, name=prop,
             padding_x=2,padding_y=2,tooltip=None)
             node.add_face(face, position="aligned", column=level)
     return layout_fn

@@ -6,8 +6,8 @@ from ete4 import Tree
 from ete4.smartview import TreeLayout, ImgFace
 
 
-TREEFILE = 'basic_example1_annotated.nw'
-ABSOLUTE_IMGPATH = os.path.abspath('frog.jpeg')
+TREEFILE = 'example_data/tree.nw'
+ABSOLUTE_IMGPATH = os.path.abspath('example_data/frog.jpeg')
 
 popup_prop_keys = [
     'name', 'dist', 'support', 'sample1',

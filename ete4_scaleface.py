@@ -5,7 +5,7 @@ from ete4.smartview  import ScaleFace
 
 
 
-TREEFILE = './basic_example1_annotated.nw'
+TREEFILE = 'example_data/tree.nw'
 
 popup_prop_keys = [
                 'name', 'dist', 'support', 'sample1',

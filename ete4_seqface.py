@@ -4,9 +4,9 @@ from ete4 import Tree
 from ete4.smartview import TreeLayout, SeqFace, SeqMotifFace, AlignmentFace
 
 
-TREEFILE = 'basic_example1_annotated.nw'
-MSA = 'basic_example1_annotated.aln.faa'
-PROTEIN2DOMAIN = 'NUP62.pfams'
+TREEFILE = 'example_data/tree.nw'
+MSA = 'example_data/tree.aln.faa'
+PROTEIN2DOMAIN = 'example_data/NUP62.pfams'
 
 popup_prop_keys = [
     'name', 'dist', 'support', 'sample1',

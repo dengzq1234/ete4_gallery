@@ -5,7 +5,7 @@ from ete4.smartview  import RectFace, HTMLFace
 
 
 
-TREEFILE = './basic_example1_annotated.nw'
+TREEFILE = 'example_data/tree.nw'
 
 popup_prop_keys = [
                 'name', 'dist', 'support', 'sample1',
@@ -22,7 +22,7 @@ def get_face(level, prop):
             val = node.props.get(prop)
             html_content = "<p>This is {}</p>".format(str(val))
             face = HTMLFace(html=html_content,
-            width=100, height=100, name=prop, 
+            width=100, height=100, name=prop,
             padding_x=2, padding_y=2)
             node.add_face(face, position="aligned", column=level)
     return layout_fn
