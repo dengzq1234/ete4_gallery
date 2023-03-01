@@ -1,69 +1,62 @@
 #!/usr/bin/env python3
 
 from ete4 import Tree
+from ete4.smartview import TreeLayout, SeqFace, SeqMotifFace, AlignmentFace
 
-# from staple_layouts import LayoutBarplot
-from ete4.smartview import TreeLayout
-from ete4.smartview  import SeqFace, SeqMotifFace, AlignmentFace
 
-TREEFILE = './basic_example1_annotated.nw'
-MSA = "./basic_example1_annotated.aln.faa"
-PROTEIN2DOMAIN = "./NUP62.pfams"
+TREEFILE = 'basic_example1_annotated.nw'
+MSA = 'basic_example1_annotated.aln.faa'
+PROTEIN2DOMAIN = 'NUP62.pfams'
 
 popup_prop_keys = [
     'name', 'dist', 'support', 'sample1',
     'sample2','sample3','sample4','sample5',
     'random_type','bool_type','bool_type2',
-    'seq'
+    'seq',
 ]
 
 
 t = Tree(TREEFILE, format=1)
-level = 2 #level 1 is leaf name
+level = 2  # level 1 is leaf name
 
 
 def get_seqs(fastafile):
-    """Read a fasta file and return a dict d[description] = sequence."""
-    fasta_dict = {}
-    head = ''
+    """Read a fasta file and return a dict with d[description] = sequence."""
+    name2seq = {}
     seq = ''
     for line in open(fastafile):
-        line = line.strip()
         if line.startswith('>'):
-            if seq != '':
-                fasta_dict[head] = seq
+            if seq:
+                name2seq[head] = seq
                 seq = ''
-                head = line[1:]
+                head = line.lstrip('>').rstrip()
             else:
-                head = line[1:]
+                head = line.lstrip('>').rstrip()
         else:
-            seq += line
-    fasta_dict[head] = seq
-    return fasta_dict
+            seq += line.rstrip()
+    name2seq[head] = seq
+    return name2seq
 
 
 def get_pfams(pfamoutput):
     """Read file pfamoutput and return a dict from protein to domain.
 
     Example output:
-        protein2domain = {
-        #   leaf_node:          [[domain1, start1, end1], ...],
-            'Phy003I7ZJ_CHICK': [['Nsp1_C', '7', '116']],
-            'Phy0054BO3_MELGA': [['Nsp1_C', '3', '116']],
+        #   leaf_node:          [(domain1, start1, end1), ...],
+        {
+            'Phy003I7ZJ_CHICK': [('Nsp1_C', 7, 116)],
+            'Phy0054BO3_MELGA': [('Nsp1_C', 3, 116)],
             ...
         }
     """
-    protein2domain = {}
+    pfams = {}  # dict that maps protein names to domains
     for line in open(pfamoutput):
-        if line.startswith("#"):
+        if line.startswith('#'):
             continue
-
         name, hit, _, _, _, start, end, _ = line.rstrip().split('\t', 7)
-        if name not in protein2domain:
-            protein2domain[name] = []
-        protein2domain[name].append([hit, start, end])
+        pfams.setdefault(name, []).append((hit, int(start), int(end)))
 
-    return protein2domain
+    return pfams
 
 
 name2pfams = get_pfams(PROTEIN2DOMAIN)
@@ -76,50 +69,51 @@ def layout_alnface(node):
     if not node.is_leaf():
         return
 
-    seq = node.props.get('seq')
-    seq_face = AlignmentFace(seq, seqtype='aa',
-                             gap_format='line', seq_format='[]',
-                             width=None, height=None, # max height
-                             fgcolor='black', bgcolor='#bcc3d0', gapcolor='gray',
-                             gap_linewidth=0.2,
-                             max_fsize=12, ftype='sans-serif',
-                             padding_x=0, padding_y=0)
+    seq_face = AlignmentFace(
+        node.props.get('seq'),
+        seqtype='aa', gap_format='line', seq_format='[]',
+        width=None, height=None,
+        fgcolor='black', bgcolor='#bcc3d0', gapcolor='gray',
+        gap_linewidth=0.2,
+        max_fsize=12, ftype='sans-serif',
+        padding_x=0, padding_y=0)
 
-    node.add_face(seq_face, position="aligned", column=level)
+    node.add_face(seq_face, position='aligned', column=level)
 
 
 def layout_seqface(node):
     if not node.is_leaf():
         return
 
-    seq = node.props.get('seq')
-    seq_face = SeqFace(seq, seqtype='aa', poswidth=15,
-                       draw_text=True, max_fsize=15, ftype='sans-serif',
-                       padding_x=0, padding_y=0)
+    seq_face = SeqFace(
+        node.props.get('seq'),
+        seqtype='aa', poswidth=15,
+        draw_text=True, max_fsize=15, ftype='sans-serif',
+        padding_x=0, padding_y=0)
 
-    node.add_face(seq_face, position="aligned", column=level)
+    node.add_face(seq_face, position='aligned', column=level)
 
 
 def layout_seqmotifface(node):
     if not node.is_leaf() or node.name not in name2pfams:
         return
 
-    seq = name2seq[node.name]
-    protDomains = name2pfams[node.name]
-
-    doms = [[int(start), int(end), '()',
+    prot_domains = name2pfams[node.name]
+    doms = [[start, end, '()',
              None, None, 'gray', 'gray',
-             f'arial|20|black|{name}'] for name, start, end in protDomains]
+             f'arial|20|black|{name}'] for name, start, end in prot_domains]
 
-    seqFace = SeqMotifFace(seq, motifs=doms, seqtype='aa',
-                           gap_format='line', seq_format='[]',
-                           width=None, height=None, # max height
-                           fgcolor='black', bgcolor='#bcc3d0', gapcolor='gray',
-                           gap_linewidth=0.2,
-                           max_fsize=12, ftype='sans-serif',
-                           padding_x=0, padding_y=0)
+    seqFace = SeqMotifFace(
+        name2seq[node.name],
+        motifs=doms, seqtype='aa',
+        gap_format='line', seq_format='[]',
+        width=None, height=None,
+        fgcolor='black', bgcolor='#bcc3d0', gapcolor='gray',
+        gap_linewidth=0.2,
+        max_fsize=12, ftype='sans-serif',
+        padding_x=0, padding_y=0)
 
-    node.add_face(seqFace, position="aligned", column=0)
+    node.add_face(seqFace, position='aligned', column=0)
 
 
 layouts = [
@@ -129,5 +123,4 @@ layouts = [
 ]
 
 
-t.explore(tree_name='example',layouts=layouts,
-          popup_prop_keys=popup_prop_keys, port=5000)
+t.explore(tree_name='example', layouts=layouts, popup_prop_keys=popup_prop_keys)
