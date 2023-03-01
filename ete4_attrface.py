@@ -21,7 +21,7 @@ level = 2 #level 1 is leaf name
 def get_attrface(level, prop):
     def layout_fn(node):
         if node.is_leaf():
-            attr_face = AttrFace(node.props.get(prop), name="sample1", 
+            attr_face = AttrFace(node.props.get(prop), name="sample1",
             color="red",
             min_fsize=6, max_fsize=15, ftype='sans-serif',
             padding_x=0, padding_y=0)
