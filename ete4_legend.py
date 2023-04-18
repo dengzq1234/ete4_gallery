@@ -7,15 +7,10 @@ import matplotlib as mpl
 
 TREEFILE = 'example_data/tree.nw'
 
-popup_prop_keys = [
-    'name', 'dist', 'support', 'sample1',
-    'sample2', 'sample3', 'sample4', 'sample5',
-    'random_type', 'bool_type', 'bool_type2'
-]
 color_dict = {
     "high":"red",
     "medium":"blue",
-    "low": "green",    
+    "low": "green",
 }
 
 t = Tree(TREEFILE, format=1)
@@ -32,7 +27,7 @@ class LayoutText(TreeLayout):
         self.legend = legend
         self.width = width
         self.height = None
-        self.min_fsize = min_fsize 
+        self.min_fsize = min_fsize
         self.max_fsize = max_fsize
         self.absence_color = "#EBEBEB"
         self.padding_x = 1
@@ -84,7 +79,7 @@ class LayoutHeatmap(TreeLayout):
         self.padding_y = 1
         self.min_fsize = 5
         self.max_fsize = 15
-        
+
     def set_tree_style(self, tree, tree_style):
         super().set_tree_style(tree, tree_style)
         text = TextFace(self.num_prop, min_fsize=self.min_fsize, max_fsize=self.max_fsize, padding_x=self.padding_x, width=self.width, rotation=315)
@@ -105,7 +100,7 @@ class LayoutHeatmap(TreeLayout):
         c2 = self.max_color #red
         if node.is_leaf() and node.props.get(self.num_prop):
             # heatmap
-            
+
             tooltip = ""
             if node.name:
                 tooltip += f'<b>{node.name}</b><br>'
@@ -115,11 +110,11 @@ class LayoutHeatmap(TreeLayout):
             try:
                 ratio = float(node.props.get(self.num_prop)) / self.maxval
                 gradient_color = color_gradient(c1, c2, mix=ratio)
-                identF = RectFace(width=self.width, height=self.height, text="%.2f" % (float(node.props.get(self.num_prop))), color=gradient_color, 
+                identF = RectFace(width=self.width, height=self.height, text="%.2f" % (float(node.props.get(self.num_prop))), color=gradient_color,
                     padding_x=self.padding_x, padding_y=self.padding_y, tooltip=tooltip)
-               
+
             except ValueError: # for miss data
-                identF = RectFace(width=self.width, height=self.height, text="NA", color=c1, 
+                identF = RectFace(width=self.width, height=self.height, text="NA", color=c1,
                 padding_x=self.padding_x, padding_y=self.padding_y, tooltip=tooltip)
 
             node.add_face(identF, column = self.column,  position = 'aligned')
@@ -136,4 +131,4 @@ layouts = [
     LayoutHeatmap(name='Heatmap_sample1', column=level+1, width=70, internal_rep='', prop='sample1', maxval=1, minval=0)
 ]
 
-t.explore(tree_name='example', layouts=layouts, popup_prop_keys=popup_prop_keys)
+t.explore(tree_name='example', layouts=layouts)
