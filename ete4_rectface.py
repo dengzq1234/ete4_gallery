@@ -7,10 +7,10 @@ from ete4.smartview import TreeLayout, RectFace
 TREEFILE = 'example_data/tree.nw'
 
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 
 def layout_rect(node):
-    if not node.is_leaf():
+    if not node.is_leaf:
         return
 
     rect_face = RectFace(

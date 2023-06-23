@@ -9,12 +9,12 @@ from ete4.smartview import TreeLayout, ImgFace
 TREEFILE = 'example_data/tree.nw'
 ABSOLUTE_IMGPATH = os.path.abspath('example_data/frog.jpeg')
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 
 
 def get_face(prop):
     def layout_fn(node):
-        if node.is_leaf():
+        if node.is_leaf:
             face = ImgFace(
                 img_path=ABSOLUTE_IMGPATH, width=70, height=50, name='',
                 padding_x=0, padding_y=0)

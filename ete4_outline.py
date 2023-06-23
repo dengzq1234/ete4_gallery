@@ -6,11 +6,11 @@ from ete4.smartview import TreeLayout, OutlineFace
 
 TREEFILE = 'example_data/tree.nw'
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 
 def layout_outline(node):
     color="green"
-    if not node.is_root():
+    if not node.is_root:
         face = OutlineFace(
             stroke_color='red',
             color='green',

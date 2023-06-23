@@ -13,7 +13,7 @@ color_dict = {
     "low": "green",
 }
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 level = 2  # level 1 is leaf name
 
 class LayoutText(TreeLayout):
@@ -46,7 +46,7 @@ class LayoutText(TreeLayout):
                                     )
 
     def set_node_style(self, node):
-        if node.is_leaf() and node.props.get(self.text_prop):
+        if node.is_leaf and node.props.get(self.text_prop):
             prop_text = node.props.get(self.text_prop)
             if prop_text:
                 if type(prop_text) == list:
@@ -98,7 +98,7 @@ class LayoutHeatmap(TreeLayout):
     def set_node_style(self, node):
         c1 = self.min_color
         c2 = self.max_color #red
-        if node.is_leaf() and node.props.get(self.num_prop):
+        if node.is_leaf and node.props.get(self.num_prop):
             # heatmap
 
             tooltip = ""

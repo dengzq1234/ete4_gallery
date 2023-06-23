@@ -6,12 +6,12 @@ from ete4.smartview import TreeLayout, TextFace
 
 TREEFILE = 'example_data/tree.nw'
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 
 
 def get_face(prop):
     def layout_fn(node):
-        if node.is_leaf():
+        if node.is_leaf:
             text_face = TextFace(
                 node.props.get(prop), color='black',
                 min_fsize=6, max_fsize=15, ftype='sans-serif',

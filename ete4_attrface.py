@@ -5,12 +5,12 @@ from ete4.smartview  import AttrFace
 
 TREEFILE = 'example_data/tree.nw'
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 
 
 def get_attrface(prop):
     def layout_fn(node):
-        if not node.is_leaf():
+        if not node.is_leaf:
             return
 
         attr_face = AttrFace(

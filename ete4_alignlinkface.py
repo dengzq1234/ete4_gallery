@@ -5,7 +5,7 @@ from ete4.smartview import TreeLayout, AlignLinkFace
 
 TREEFILE = 'example_data/tree.nw'
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 level = 2  # level 1 is leaf name
 
 
@@ -16,7 +16,7 @@ def layout_align_link(node):
     node.add_face(align_link_face,
                   position='branch_right',
                   column=1e9,
-                  collapsed_only=not node.is_leaf())
+                  collapsed_only=not node.is_leaf)
 
 layout_align_link.__name__ = 'Aligned panel link'
 layout_align_link._module = 'default'

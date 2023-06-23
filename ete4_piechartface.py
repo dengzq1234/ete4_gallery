@@ -6,11 +6,11 @@ from ete4.smartview import TreeLayout, PieChartFace
 
 TREEFILE = 'example_data/tree.nw'
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 
 def get_face(prop):
     def layout_fn(node):
-        if node.is_leaf():
+        if node.is_leaf:
             piechart_data = [
                 ['pie1', 4, 'red', None],
                 ['pie2', 10, 'blue', None],

@@ -6,12 +6,12 @@ from ete4.smartview  import RectFace, HTMLFace
 
 TREEFILE = 'example_data/tree.nw'
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 
 
 def get_face(level, prop):
     def layout_fn(node):
-        if node.is_leaf():
+        if node.is_leaf:
             val = node.props.get(prop)
             html_content = "<p>This is {}</p>".format(str(val))
             face = HTMLFace(html=html_content,

@@ -9,7 +9,7 @@ MSA = 'example_data/tree.aln.faa'
 PROTEIN2DOMAIN = 'example_data/NUP62.pfams'
 
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 
 
 def get_seqs(fastafile):
@@ -53,12 +53,12 @@ def get_pfams(pfamoutput):
 
 name2pfams = get_pfams(PROTEIN2DOMAIN)
 name2seq = get_seqs(MSA)
-for leaf in t.iter_leaves():
+for leaf in t.leaves():
     leaf.add_prop('seq', name2seq[leaf.name])
 
 
 def layout_alnface(node):
-    if not node.is_leaf():
+    if not node.is_leaf:
         return
 
     seq_face = AlignmentFace(
@@ -74,7 +74,7 @@ def layout_alnface(node):
 
 
 def layout_seqface(node):
-    if not node.is_leaf():
+    if not node.is_leaf:
         return
 
     seq_face = SeqFace(
@@ -87,7 +87,7 @@ def layout_seqface(node):
 
 
 def layout_seqmotifface(node):
-    if not node.is_leaf() or node.name not in name2pfams:
+    if not node.is_leaf or node.name not in name2pfams:
         return
 
     prot_domains = name2pfams[node.name]
