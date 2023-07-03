@@ -131,4 +131,4 @@ layouts = [
     LayoutHeatmap(name='Heatmap_sample1', column=level+1, width=70, internal_rep='', prop='sample1', maxval=1, minval=0)
 ]
 
-t.explore(tree_name='example', layouts=layouts)
+t.explore('example', layouts=layouts)

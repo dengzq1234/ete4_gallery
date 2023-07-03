@@ -115,4 +115,4 @@ layouts = [
 ]
 
 
-t.explore(tree_name='example', layouts=layouts)
+t.explore('example', layouts=layouts)
