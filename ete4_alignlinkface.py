@@ -26,4 +26,4 @@ layouts = [
     TreeLayout(name='sample1', ns=layout_align_link, aligned_faces=True),
 ]
 
-t.explore('example',layouts=layouts)
+t.explore('example',layouts=layouts, daemon=False)

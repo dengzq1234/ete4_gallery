@@ -25,4 +25,4 @@ layouts = [
     TreeLayout(name='sample1', ns=get_face('sample1'), aligned_faces=True),
 ]
 
-t.explore('example', layouts=layouts)
+t.explore('example', layouts=layouts, daemon=False)

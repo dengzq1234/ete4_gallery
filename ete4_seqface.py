@@ -115,4 +115,4 @@ layouts = [
 ]
 
 
-t.explore('example', layouts=layouts)
+t.explore('example', layouts=layouts, daemon=False)
