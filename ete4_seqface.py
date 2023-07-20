@@ -13,7 +13,10 @@ t = Tree(open(TREEFILE))
 
 
 def get_seqs(fastafile):
-    """Read a fasta file and return a dict with d[description] = sequence."""
+    """Read a fasta file and return a dict with d[description] = sequence.
+
+    Example output: {'Phy003I7ZJ_CHICK': 'TMSQFNFSSAPAGGGFSFSTPKT...', ...}
+    """
     name2seq = {}
     seq = ''
     for line in open(fastafile):
@@ -53,7 +56,7 @@ def get_pfams(pfamoutput):
 
 name2pfams = get_pfams(PROTEIN2DOMAIN)
 name2seq = get_seqs(MSA)
-for leaf in t.leaves():
+for leaf in t:
     leaf.add_prop('seq', name2seq[leaf.name])
 
 
