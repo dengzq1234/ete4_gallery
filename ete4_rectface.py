@@ -14,7 +14,7 @@ def layout_rect(node):
         return
 
     rect_face = RectFace(
-        width=50, height=70, color='gray',
+        width=77, height=70, color='blue',
         opacity=0.7, text=None, fgcolor='black',
         min_fsize=6, max_fsize=15, ftype='sans-serif',
         padding_x=0, padding_y=0,

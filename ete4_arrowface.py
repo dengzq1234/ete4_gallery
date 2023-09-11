@@ -13,9 +13,9 @@ def layout_arrow(node):
     if not node.is_leaf:
         return
 
-    face = ArrowFace(
+    right_face = ArrowFace(
         width=100, height=70, orientation='right',
-        color='green', stroke_color='gray', stroke_width='1.5px',
+        color='black', stroke_color='gray', stroke_width='1.5px',
         text=None, fgcolor='black',
         min_fsize=6, max_fsize=15,
         ftype='sans-serif',
@@ -23,8 +23,20 @@ def layout_arrow(node):
         padding_x=0, padding_y=0,
         tooltip=None)
 
-    node.add_face(face, position='aligned')
+    left_face = ArrowFace(
+        width=100, height=70, orientation='left',
+        color='red', stroke_color='gray', stroke_width='1.5px',
+        text=None, fgcolor='black',
+        min_fsize=6, max_fsize=15,
+        ftype='sans-serif',
+        name='',
+        padding_x=0, padding_y=0,
+        tooltip=None)
 
+    if node.name.endswith("FALPE"):
+        node.add_face(left_face, position='aligned')
+    else:
+        node.add_face(right_face, position='aligned')
 
 layouts = [
     TreeLayout(name='sample1', ns=layout_arrow, aligned_faces=True),
