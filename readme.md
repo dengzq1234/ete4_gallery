@@ -18,6 +18,5 @@ The following examples have some known issues:
 - `ete4_attrface.py` - Seems to not add any face.
 - `ete4_htmlface.py` - The face appears and disappears immediately.
 - `ete4_outline.py` - Once the outline appears, it never disappears.
-
-*new 17/04/2023
-- `ete4_legend.py` - if you download svg/pdf while tree layout with legends, tree legends collapsed with the tree image
+- `ete4_legend.py` - If you download as svg/pdf a tree with layout
+      with legends, the legends do not appear in the downloaded image.
