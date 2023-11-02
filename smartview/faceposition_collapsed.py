@@ -9,7 +9,7 @@ def modify_face_position(node):
     if node.name == "n1":
         # write text face "Hola" in node n1 and show it in branch_right directly
         node.add_face(TextFace("Hola!", color="red"), column=0, position='branch_right', collapsed_only=False)
-        # write text face "Hola" in node n1 and show it in branch_right only when node is collapsed
+        # write text face "mundo" in node n1 and show it in branch_right only when node is collapsed
         node.add_face(TextFace('mundo!', color="blue"), column=1, position='branch_right', collapsed_only=True)
     return
 
