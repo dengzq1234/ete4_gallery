@@ -6,6 +6,7 @@ from ete4.smartview import TreeLayout, RectFace, TreeStyle, TextFace
 
 TREEFILE = 'example_data/tree.nw'
 
+<<<<<<< HEAD
 popup_prop_keys = [
     'name', 'dist', 'support', 'sample1',
     'sample2', 'sample3', 'sample4', 'sample5',
@@ -15,10 +16,14 @@ popup_prop_keys = [
 
 t = Tree(open(TREEFILE))
 level = 2  # level 1 is leaf name
+=======
+>>>>>>> 3d1e59cab10e9cdd815ee5a6c879c957453a488f
 
+t = Tree(open(TREEFILE))
 
 def layout_rect(node):
     if not node.is_leaf:
+<<<<<<< HEAD
         node.sm_style['fgcolor']="blue"
         node.sm_style['size']=3
         return
@@ -54,9 +59,27 @@ def tree_style_hello(tree_style):
            })
 
     
+=======
+        return
+
+    rect_face = RectFace(
+        width=77, height=70, color='blue',
+        opacity=0.7, text=None, fgcolor='black',
+        min_fsize=6, max_fsize=15, ftype='sans-serif',
+        padding_x=0, padding_y=0,
+        tooltip=None)
+
+    node.add_face(rect_face, position='aligned', column=0)
+
+>>>>>>> 3d1e59cab10e9cdd815ee5a6c879c957453a488f
 
 layouts = [
     TreeLayout(name='sample1',ns=layout_rect, ts=tree_style_hello, aligned_faces=True),
 ]
 
+<<<<<<< HEAD
 t.explore(keep_server=True, layouts=layouts)
+=======
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')
+>>>>>>> 3d1e59cab10e9cdd815ee5a6c879c957453a488f

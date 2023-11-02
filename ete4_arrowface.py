@@ -6,23 +6,16 @@ from ete4.smartview import TreeLayout, ArrowFace
 
 TREEFILE = 'example_data/tree.nw'
 
-popup_prop_keys = [
-    'name', 'dist', 'support', 'sample1',
-    'sample2','sample3','sample4','sample5',
-    'random_type','bool_type','bool_type2'
-]
-
-t = Tree(TREEFILE, format=1)
-level = 2  # level 1 is leaf name
+t = Tree(open(TREEFILE))
 
 
 def layout_arrow(node):
-    if not node.is_leaf():
+    if not node.is_leaf:
         return
 
-    face = ArrowFace(
+    right_face = ArrowFace(
         width=100, height=70, orientation='right',
-        color='green', stroke_color='gray', stroke_width='1.5px',
+        color='black', stroke_color='gray', stroke_width='1.5px',
         text=None, fgcolor='black',
         min_fsize=6, max_fsize=15,
         ftype='sans-serif',
@@ -30,11 +23,24 @@ def layout_arrow(node):
         padding_x=0, padding_y=0,
         tooltip=None)
 
-    node.add_face(face, position='aligned', column=level)
+    left_face = ArrowFace(
+        width=100, height=70, orientation='left',
+        color='red', stroke_color='gray', stroke_width='1.5px',
+        text=None, fgcolor='black',
+        min_fsize=6, max_fsize=15,
+        ftype='sans-serif',
+        name='',
+        padding_x=0, padding_y=0,
+        tooltip=None)
 
+    if node.name.endswith("FALPE"):
+        node.add_face(left_face, position='aligned')
+    else:
+        node.add_face(right_face, position='aligned')
 
 layouts = [
     TreeLayout(name='sample1', ns=layout_arrow, aligned_faces=True),
 ]
 
-t.explore(tree_name='example', layouts=layouts, popup_prop_keys=popup_prop_keys)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')

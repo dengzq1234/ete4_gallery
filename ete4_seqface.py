@@ -8,20 +8,15 @@ TREEFILE = 'example_data/tree.nw'
 MSA = 'example_data/tree.aln.faa'
 PROTEIN2DOMAIN = 'example_data/NUP62.pfams'
 
-popup_prop_keys = [
-    'name', 'dist', 'support', 'sample1',
-    'sample2','sample3','sample4','sample5',
-    'random_type','bool_type','bool_type2',
-    'seq',
-]
 
-
-t = Tree(TREEFILE, format=1)
-level = 2  # level 1 is leaf name
+t = Tree(open(TREEFILE))
 
 
 def get_seqs(fastafile):
-    """Read a fasta file and return a dict with d[description] = sequence."""
+    """Read a fasta file and return a dict with d[description] = sequence.
+
+    Example output: {'Phy003I7ZJ_CHICK': 'TMSQFNFSSAPAGGGFSFSTPKT...', ...}
+    """
     name2seq = {}
     seq = ''
     for line in open(fastafile):
@@ -61,12 +56,12 @@ def get_pfams(pfamoutput):
 
 name2pfams = get_pfams(PROTEIN2DOMAIN)
 name2seq = get_seqs(MSA)
-for leaf in t.iter_leaves():
+for leaf in t:
     leaf.add_prop('seq', name2seq[leaf.name])
 
 
 def layout_alnface(node):
-    if not node.is_leaf():
+    if not node.is_leaf:
         return
 
     seq_face = AlignmentFace(
@@ -78,11 +73,11 @@ def layout_alnface(node):
         max_fsize=12, ftype='sans-serif',
         padding_x=0, padding_y=0)
 
-    node.add_face(seq_face, position='aligned', column=level)
+    node.add_face(seq_face, position='aligned')
 
 
 def layout_seqface(node):
-    if not node.is_leaf():
+    if not node.is_leaf:
         return
 
     seq_face = SeqFace(
@@ -91,11 +86,11 @@ def layout_seqface(node):
         draw_text=True, max_fsize=15, ftype='sans-serif',
         padding_x=0, padding_y=0)
 
-    node.add_face(seq_face, position='aligned', column=level)
+    node.add_face(seq_face, position='aligned')
 
 
 def layout_seqmotifface(node):
-    if not node.is_leaf() or node.name not in name2pfams:
+    if not node.is_leaf or node.name not in name2pfams:
         return
 
     prot_domains = name2pfams[node.name]
@@ -122,5 +117,10 @@ layouts = [
     TreeLayout(name='pfam', ns=layout_seqmotifface, aligned_faces=True),
 ]
 
+<<<<<<< HEAD
 
 t.explore(tree_name='example', layouts=layouts)
+=======
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')
+>>>>>>> 3d1e59cab10e9cdd815ee5a6c879c957453a488f

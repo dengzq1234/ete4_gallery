@@ -1,12 +1,12 @@
-from ete4 import Tree
-# from staple_layouts import LayoutBarplot
-from ete4.smartview import TreeStyle, NodeStyle, TreeLayout
-from ete4.smartview  import OutlineFace
+#!/usr/bin/env python3
 
+from ete4 import Tree
+from ete4.smartview import TreeLayout, OutlineFace
 
 
 TREEFILE = 'example_data/tree.nw'
 
+<<<<<<< HEAD
 popup_prop_keys = [
                 'name', 'dist', 'support', 'sample1',
                 'sample2','sample3','sample4','sample5',
@@ -30,11 +30,32 @@ def get_outlineface(): # work on internal node of collapse face
             node.add_face(face_name, column = 0,  position = 'branch_right', collapsed_only=True)
     return layout_fn
     return
+=======
+t = Tree(open(TREEFILE))
+
+def layout_outline(node):
+    color="green"
+    if not node.is_root:
+        face = OutlineFace(
+            stroke_color='red',
+            color='green',
+            collapsing_height=float("inf"),
+            opacity=1.0, stroke_width=500)
+
+        node.sm_style["draw_descendants"] = False
+        node.sm_style["outline_color"] = 'green'
+
+        node.add_face(face, position='branch_right', collapsed_only=True)
+>>>>>>> 3d1e59cab10e9cdd815ee5a6c879c957453a488f
 
 
 layouts = [
-    # Rectangular face
-    TreeLayout(name='sample1', ns=get_outlineface(), aligned_faces = True),
+    TreeLayout(name='sample1', ns=layout_outline, aligned_faces=True),
 ]
 
+<<<<<<< HEAD
 t.explore(daemon=False, layouts=layouts, compress=False)
+=======
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')
+>>>>>>> 3d1e59cab10e9cdd815ee5a6c879c957453a488f
