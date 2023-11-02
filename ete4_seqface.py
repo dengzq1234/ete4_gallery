@@ -123,4 +123,4 @@ layouts = [
 ]
 
 
-t.explore(tree_name='example', layouts=layouts, popup_prop_keys=popup_prop_keys)
+t.explore(tree_name='example', layouts=layouts)

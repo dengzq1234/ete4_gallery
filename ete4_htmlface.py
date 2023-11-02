@@ -33,4 +33,4 @@ layouts = [
 ]
 
 t.explore(tree_name='example',layouts=layouts, \
-            popup_prop_keys=popup_prop_keys, port=5000)
+            port=5000)

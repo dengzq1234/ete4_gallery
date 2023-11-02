@@ -13,17 +13,17 @@ popup_prop_keys = [
                 'random_type','bool_type','bool_type2'
         ]
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 level = 2 #level 1 is leaf name
 
 def get_outlineface(): # work on internal node of collapse face
     def layout_fn(node):
         color="green"
-        if not node.is_root():
+        if not node.is_root:
             #face_name = TextFace(node.props.get('sci_name'), color=color)
             #face_name = OutlineFace(node.props.get('sci_name'), color=color, collapsing_height= float("inf"))
             face_name = OutlineFace(stroke_color='red', color=color,
-                collapsing_height= float("inf"),
+                #collapsing_height= float("inf"),
                 opacity=1.0, stroke_width=500, )
             node.sm_style["draw_descendants"] = False
             node.sm_style["outline_color"] = color
@@ -37,5 +37,4 @@ layouts = [
     TreeLayout(name='sample1', ns=get_outlineface(), aligned_faces = True),
 ]
 
-t.explore(tree_name='example',layouts=layouts, \
-            popup_prop_keys=popup_prop_keys, port=5000)
+t.explore(daemon=False, layouts=layouts, compress=False)

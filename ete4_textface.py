@@ -12,23 +12,24 @@ popup_prop_keys = [
     'random_type', 'bool_type', 'bool_type2'
 ]
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 level = 2  # level 1 is leaf name
 
 def get_face(prop):
     def layout_fn(node):
-        if node.is_leaf():
+        if node.is_leaf:
             text_face = TextFace(
-                node.props.get(prop), color='black',
+                node.props.get(prop), color='red',
                 min_fsize=6, max_fsize=15, ftype='sans-serif',
                 padding_x=0, padding_y=0, width=None)
-            node.add_face(text_face, position='aligned', column=level)
+            node.add_face(text_face, position='branch_right', column=level+1)
 
     return layout_fn
 
 
 layouts = [
-    TreeLayout(name='sample1', ns=get_face('sample1'), aligned_faces=True),
+    TreeLayout(name='sample1', ns=get_face('sample1'), aligned_faces=False),
+    TreeLayout(name='sample2', ns=get_face('sample2'), aligned_faces=True),
 ]
 
-t.explore(tree_name='example', layouts=layouts, popup_prop_keys=popup_prop_keys)
+t.explore(keep_server=True, layouts=layouts, quiet=False)

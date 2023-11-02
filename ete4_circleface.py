@@ -11,13 +11,13 @@ popup_prop_keys = [
     'random_type','bool_type','bool_type2'
 ]
 
-t = Tree(TREEFILE, format=1)
+t = Tree(open(TREEFILE))
 level = 2  # level 1 is leaf name
 
 
 def get_face(prop):
     def layout_fn(node):
-        if node.is_leaf():
+        if node.is_leaf:
             node_prop = float(node.props.get(prop)) * 15
             face = CircleFace(
                 radius=node_prop, color='red', name=prop,
@@ -30,4 +30,4 @@ layouts = [
     TreeLayout(name='sample1', ns=get_face('sample1'), aligned_faces=True),
 ]
 
-t.explore(tree_name='example', layouts=layouts, popup_prop_keys=popup_prop_keys)
+t.explore(daemon=False,layouts=layouts)
