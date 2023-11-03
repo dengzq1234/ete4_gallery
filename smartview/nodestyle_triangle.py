@@ -7,7 +7,7 @@ t = Tree('((A,B),C);')
 def modify_node_style(node):
     # Draw nodes as small red square of diameter equal fo 10 pixels
     node.sm_style["fgcolor"] = "red"
-    node.sm_style["shape"] = "traingle"
+    node.sm_style["shape"] = "triangle"
     node.sm_style["size"] = 10
 
     # brown dashed branch lines with width equal to 2 pixels
