@@ -4,31 +4,23 @@ from ete4.smartview import TreeStyle, NodeStyle, TreeLayout
 from ete4.smartview  import RectFace, HTMLFace
 
 
-TREEFILE = 'example_data/tree.nw'
+t = Tree()
+t.populate(20, random_branches=True)
 
-t = Tree(open(TREEFILE))
 
-
-def get_face(level, prop):
-    def layout_fn(node):
-        if node.is_leaf:
-            val = node.props.get(prop)
-            html_content = "<p>This is {}</p>".format(str(val))
-            face = HTMLFace(html=html_content,
-            width=100, height=100, name=prop,
-            padding_x=2, padding_y=2)
-            node.add_face(face, position="aligned")
-    return layout_fn
+def get_face(node):
+    if node.is_leaf:
+        val = node.name
+        html_content = "<p>This is {}</p>".format(str(val))
+        face = HTMLFace(html=html_content,
+        width=100, height=100, name=val,
+        padding_x=2, padding_y=2)
+        node.add_face(face, position="aligned")
+    return 
 
 
 layouts = [
-    TreeLayout(name='sample1', ns=get_face('sample1'), aligned_faces=True),
+    TreeLayout(name='sample1', ns=get_face, aligned_faces=True),
 ]
 
-<<<<<<< HEAD
-t.explore(tree_name='example',layouts=layouts, \
-            port=5000)
-=======
-t.explore(layouts=layouts)
-input('Tree explorer running. Press enter to stop the server and finish.\n')
->>>>>>> 3d1e59cab10e9cdd815ee5a6c879c957453a488f
+t.explore(layouts=layouts, keep_server=True)

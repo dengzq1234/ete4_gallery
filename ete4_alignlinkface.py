@@ -3,9 +3,9 @@
 from ete4 import Tree
 from ete4.smartview import TreeLayout, AlignLinkFace
 
-TREEFILE = 'example_data/tree.nw'
+t = Tree()
+t.populate(20, random_branches=True)
 
-t = Tree(open(TREEFILE))
 level = 2  # level 1 is leaf name
 
 
@@ -17,14 +17,11 @@ def layout_align_link(node):
                   position='branch_right',
                   column=1e9,
                   collapsed_only=not node.is_leaf)
-
-layout_align_link.__name__ = 'Aligned panel link'
-layout_align_link._module = 'default'
+    return
 
 
 layouts = [
-    TreeLayout(name='sample1', ns=layout_align_link, aligned_faces=True),
+    TreeLayout(name='alignlink', ns=layout_align_link, aligned_faces=True),
 ]
 
-t.explore(layouts=layouts)
-input('Tree explorer running. Press enter to stop the server and finish.\n')
+t.explore(layouts=layouts, keep_server=True)

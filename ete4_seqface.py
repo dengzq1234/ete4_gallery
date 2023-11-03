@@ -82,7 +82,7 @@ def layout_seqface(node):
 
     seq_face = SeqFace(
         node.props.get('seq'),
-        seqtype='aa', poswidth=15,
+        seqtype='aa', poswidth=15, 
         draw_text=True, max_fsize=15, ftype='sans-serif',
         padding_x=0, padding_y=0)
 
@@ -117,10 +117,4 @@ layouts = [
     TreeLayout(name='pfam', ns=layout_seqmotifface, aligned_faces=True),
 ]
 
-<<<<<<< HEAD
-
-t.explore(tree_name='example', layouts=layouts)
-=======
-t.explore(layouts=layouts)
-input('Tree explorer running. Press enter to stop the server and finish.\n')
->>>>>>> 3d1e59cab10e9cdd815ee5a6c879c957453a488f
+t.explore(layouts=layouts, keep_server=True)

@@ -131,5 +131,4 @@ layouts = [
     LayoutHeatmap(name='Heatmap_sample1', column=level+1, width=70, internal_rep='', prop='sample1', maxval=1, minval=0)
 ]
 
-t.explore(layouts=layouts)
-input('Tree explorer running. Press enter to stop the server and finish.\n')
+t.explore(layouts=layouts,keep_server)
