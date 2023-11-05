@@ -3,6 +3,13 @@ from ete4.smartview import TreeLayout, NodeStyle, TextFace
 
 t = Tree('((((a1,a2),a3), ((b1,b2),(b3,b4))), ((c1,c2),c3));')
 
+# find common ancestors
+n1 = t.common_ancestor(["a1", "a2", "a3"])
+n2 = t.common_ancestor(["b1", "b2", "b3", "b4"])
+n3 = t.common_ancestor(["c1", "c2", "c3"])
+n4 = t.common_ancestor(["b3", "b4"])
+
+
 # set background color for difference node style
 nst1 = NodeStyle()
 nst1["bgcolor"] = "LightSteelBlue"
@@ -13,11 +20,6 @@ nst3["bgcolor"] = "DarkSeaGreen"
 nst4 = NodeStyle()
 nst4["bgcolor"] = "Khaki"
 
-# find common ancestors
-n1 = t.common_ancestor(["a1", "a2", "a3"])
-n2 = t.common_ancestor(["b1", "b2", "b3", "b4"])
-n3 = t.common_ancestor(["c1", "c2", "c3"])
-n4 = t.common_ancestor(["b3", "b4"])
 
 # set color map dictionary
 colormap = {
