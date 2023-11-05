@@ -30,7 +30,6 @@ def vowel_node_layout(node):
             # here to add text face to node in aligned position
             node.add_face(TextFace('not vowel!', color="blue"), column=0, position='aligned')
 
-
 # Create a TreeLayout object, passing in the function
 tree_layout = TreeLayout(name="MyTreeLayout", 
     ts=vowel_tree_style, 

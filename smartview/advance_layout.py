@@ -1,13 +1,12 @@
 from ete4 import Tree
-from ete4.smartview import TreeLayout, TextFace
+from ete4.smartview import TreeLayout
 
 t = Tree('((((a,b),c),d),e);')
-
 
 def vowel_node_layout(node):
     vowels = {'a', 'e', 'i', 'o', 'u'}
 
-    # here to set the node style
+    # here to modfiy node style directly inside the function
     if node.is_leaf:
         if node.name in vowels:
             node.sm_style['size'] = 15
