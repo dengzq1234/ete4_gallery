@@ -86,7 +86,6 @@ layouts = [
     TreeLayout(name='compact_aln', ns=layout_alnface_compact, aligned_faces=True),
     TreeLayout(name='gray_aln', ns=layout_alnface_gray, aligned_faces=True, active=False),
     TreeLayout(name='seq', ns=layout_seqface, aligned_faces=True,  active=False),
-    
 ]
 
 t.explore(layouts=layouts, keep_server=True)
