@@ -61,5 +61,5 @@ layouts = []
 layouts.append(barplot_layout)
 t.explore(
     layouts=layouts, 
-    include_props=("name", "dist", "length"),
+    include_props=("name", "dist", "count"),
     keep_server=True)
