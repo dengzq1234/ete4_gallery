@@ -62,8 +62,7 @@ def get_node_face(colormap):
             # show text face even for collapsed nodes
             node.add_face(lca_face, position='aligned', collapsed_only=True)
             
-            
-        return get_background
+        return 
     return get_background
     
 
