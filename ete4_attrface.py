@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from ete4 import Tree
 from ete4.smartview import TreeLayout
 from ete4.smartview  import AttrFace
@@ -14,7 +16,7 @@ def get_attrface(prop):
             return
 
         attr_face = AttrFace(
-            node.props.get(prop),
+            prop,
             name='sample1',
             color='red',
             min_fsize=6, max_fsize=15, ftype='sans-serif',
@@ -29,4 +31,5 @@ layouts = [
     TreeLayout(name='sample1', ns=get_attrface('sample1'), aligned_faces=True),
 ]
 
-t.explore(layouts=layouts, keep_server=True)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')
