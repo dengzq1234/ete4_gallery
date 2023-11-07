@@ -93,10 +93,10 @@ def layout_alnface_compact(node):
 
 def layout_seqface(node):
     if node.is_leaf:
-       
+
         seq_face = SeqFace(
             node.props.get('seq'),
-            seqtype='aa', poswidth=1, 
+            seqtype='aa', poswidth=1,
             draw_text=True, max_fsize=15, ftype='sans-serif',
             padding_x=0, padding_y=0)
 
@@ -109,7 +109,7 @@ def layout_seqface(node):
 #         return
 
 #     prot_domains = name2pfams[node.name]
-    
+
 #     # doms = [
 #     #     [start, end, shape, posw, h, fg, bg, text, opacity]
 #     # ]
@@ -140,4 +140,5 @@ layouts = [
     #TreeLayout(name='domain', ns=layout_seqmotifface, aligned_faces=True),
 ]
 
-t.explore(layouts=layouts, keep_server=True)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')

@@ -25,4 +25,5 @@ layouts = [
     TreeLayout(name='circle', ns=get_face, aligned_faces=True),
 ]
 
-t.explore(layouts=layouts, keep_server=True)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.')

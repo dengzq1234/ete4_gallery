@@ -27,4 +27,5 @@ layouts = [
     TreeLayout(name='sample1', ns=get_stackedbarface, aligned_faces=True),
 ]
 
-t.explore(layouts=layouts, keep_server=True)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')

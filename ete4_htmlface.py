@@ -16,11 +16,12 @@ def get_face(node):
         width=100, height=100, name=val,
         padding_x=2, padding_y=2)
         node.add_face(face, position="aligned")
-    return 
+    return
 
 
 layouts = [
     TreeLayout(name='sample1', ns=get_face, aligned_faces=True),
 ]
 
-t.explore(layouts=layouts, keep_server=True)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')

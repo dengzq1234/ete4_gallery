@@ -37,9 +37,10 @@ def layout_arrow(node):
         #     tooltip=None)
 
         node.add_face(arrow_face, position='aligned')
-        
+
 layouts = [
     TreeLayout(name='sample1', ns=layout_arrow, aligned_faces=True),
 ]
 
-t.explore(layouts=layouts, keep_server=True)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')

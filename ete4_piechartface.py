@@ -23,7 +23,8 @@ def get_piechartface(node):
 
 layouts = [
     TreeLayout(name="piechart", ns=get_piechartface, aligned_faces=True),
-    
+
 ]
 
-t.explore(layouts=layouts, keep_server=True)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')

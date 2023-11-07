@@ -17,10 +17,11 @@ def layout_rect(node):
         padding_x=0, padding_y=0,
         tooltip=None)
     node.add_face(rect_face, position='aligned', column=0)
-    return 
+    return
 
 layouts = [
     TreeLayout(name='sample1',ns=layout_rect, aligned_faces=True),
 ]
 
-t.explore(layouts=layouts, keep_server=True)
+t.explore(layouts=layouts)
+input('Tree explorer running. Press enter to stop the server and finish.\n')
