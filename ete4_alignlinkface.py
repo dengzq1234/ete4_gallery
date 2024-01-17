@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
+import random
+
 from ete4 import Tree
 from ete4.smartview import TreeLayout, AlignLinkFace
 
+
 t = Tree()
-t.populate(20, random_branches=True)
+t.populate(20, dist_fn=random.random, support_fn=random.random)
 
 level = 2  # level 1 is leaf name
 

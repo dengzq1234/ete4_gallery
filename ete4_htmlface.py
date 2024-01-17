@@ -1,11 +1,12 @@
+import random
+
 from ete4 import Tree
-# from staple_layouts import LayoutBarplot
 from ete4.smartview import TreeStyle, NodeStyle, TreeLayout
 from ete4.smartview  import RectFace, HTMLFace
 
 
 t = Tree()
-t.populate(20, random_branches=True)
+t.populate(20, dist_fn=random.random, support_fn=random.random)
 
 
 def get_face(node):

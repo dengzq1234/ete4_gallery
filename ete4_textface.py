@@ -4,9 +4,9 @@ from ete4 import Tree
 from ete4.smartview import TreeLayout, TextFace
 
 
-TREEFILE = '((A:1,B:1)internal_nodeF:1,(C:1,(D:1,E:1)internal_nodeG:1)internal_nodeH:1)root:1;'
+nw = '((A:1,B:1)internal_nodeF:1,(C:1,(D:1,E:1)internal_nodeG:1)internal_nodeH:1)root:1;'
 
-t = Tree(TREEFILE)
+t = Tree(nw, parser=1)
 
 def get_face(prop):
     def layout_fn(node):

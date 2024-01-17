@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import random
 
 from ete4 import Tree
 from ete4.smartview import TreeLayout, ImgFace
@@ -8,10 +9,7 @@ from ete4.smartview import TreeLayout, ImgFace
 ABSOLUTE_IMGPATH = os.path.abspath('example_data/frog.jpeg')
 
 t = Tree()
-t.populate(20, random_branches=True)
-
-
-
+t.populate(20, dist_fn=random.random, support_fn=random.random)
 
 
 def get_face(node):

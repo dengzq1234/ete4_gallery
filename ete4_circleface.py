@@ -5,7 +5,7 @@ from ete4.smartview import TreeLayout, CircleFace
 import random
 
 t = Tree()
-t.populate(20, random_branches=True)
+t.populate(20, dist_fn=random.random, support_fn=random.random)
 
 # List of colors
 colors = ['red', 'blue', 'green']

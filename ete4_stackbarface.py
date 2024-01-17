@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
+import random
+
 from ete4 import Tree
 from ete4.smartview import TreeLayout, StackedBarFace
-from ete4.smartview.renderer.draw_helpers import *
 
 
 t = Tree()
-t.populate(20, random_branches=True)
+t.populate(20, dist_fn=random.random, support_fn=random.random)
 
 def get_stackedbarface(node):
     if node.is_leaf:

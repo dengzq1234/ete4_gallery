@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-from ete4 import Tree
-from ete4.smartview import TreeLayout, ArrowFace
 import random
 
+from ete4 import Tree
+from ete4.smartview import TreeLayout, ArrowFace
+
 t = Tree()
-t.populate(20, random_branches=True)
+t.populate(20, dist_fn=random.random, support_fn=random.random)
 
 # List of directions
 directions = ['left', 'right']
@@ -22,19 +23,9 @@ def layout_arrow(node):
             text=None, fgcolor='black',
             min_fsize=6, max_fsize=15,
             ftype='sans-serif',
-            name='',
+            name=f'I am thee arrow of node {node.name}!',
             padding_x=0, padding_y=0,
             tooltip=None)
-
-        # left_face = ArrowFace(
-        #     width=100, height=70, orientation='left',
-        #     color='red', stroke_color='gray', stroke_width='1.5px',
-        #     text=None, fgcolor='black',
-        #     min_fsize=6, max_fsize=15,
-        #     ftype='sans-serif',
-        #     name='',
-        #     padding_x=0, padding_y=0,
-        #     tooltip=None)
 
         node.add_face(arrow_face, position='aligned')
 
