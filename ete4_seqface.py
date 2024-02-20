@@ -24,9 +24,7 @@ def get_seqs(fastafile):
             if seq:
                 name2seq[head] = seq
                 seq = ''
-                head = line.lstrip('>').rstrip()
-            else:
-                head = line.lstrip('>').rstrip()
+            head = line.lstrip('>').rstrip()
         else:
             seq += line.rstrip()
     name2seq[head] = seq
@@ -54,11 +52,11 @@ def get_pfams(pfamoutput):
     return pfams
 
 
-# get information alignment and domains
+# Get information alignment and domains.
 name2pfams = get_pfams(PROTEIN2DOMAIN)
 name2seq = get_seqs(MSA)
 
-
+# Annotate tree with them.
 for leaf in t:
     leaf.add_prop('seq', name2seq[leaf.name])
 
@@ -75,7 +73,6 @@ def layout_alnface_gray(node):
             padding_x=0, padding_y=0)
 
         node.add_face(seq_face, position='aligned')
-    return
 
 def layout_alnface_compact(node):
     if node.is_leaf:
@@ -89,7 +86,6 @@ def layout_alnface_compact(node):
             padding_x=0, padding_y=0)
 
         node.add_face(seq_face, position='aligned')
-    return
 
 def layout_seqface(node):
     if node.is_leaf:
@@ -101,7 +97,6 @@ def layout_seqface(node):
             padding_x=0, padding_y=0)
 
         node.add_face(seq_face, position='aligned')
-    return
 
 
 # def layout_seqmotifface(node):
