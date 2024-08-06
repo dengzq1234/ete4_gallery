@@ -1,29 +1,20 @@
 #!/usr/bin/env python3
 
-import random
+from random import random
 
 from ete4 import Tree
-from ete4.smartview import TreeLayout, RectFace, TreeStyle, TextFace
+from ete4.smartview import Layout, DEFAULT_LAYOUT, Decoration, RectFace
 
 t = Tree()
-t.populate(20, dist_fn=random.random, support_fn=random.random)
+t.populate(20, dist_fn=random, support_fn=random)
 
-def layout_rect(node):
-    if not node.is_leaf:
-        return
+def node_decorations(node):
+    if node.is_leaf:
+        face = RectFace(wmax=80, hmax=70,
+                        style={'fill': 'blue'})
+        yield Decoration(face, position='aligned')
 
-    rect_face = RectFace(
-        width=77, height=70, color='blue',
-        opacity=0.7, text=None, fgcolor='black',
-        min_fsize=6, max_fsize=15, ftype='sans-serif',
-        padding_x=0, padding_y=0,
-        tooltip=None)
-    node.add_face(rect_face, position='aligned', column=0)
-    return
+rects_layout = Layout(name='rects', node_decos=node_decorations)
 
-layouts = [
-    TreeLayout(name='sample1',ns=layout_rect, aligned_faces=True),
-]
-
-t.explore(layouts=layouts)
+t.explore(layouts=[DEFAULT_LAYOUT, rects_layout])
 input('Tree explorer running. Press enter to stop the server and finish.\n')

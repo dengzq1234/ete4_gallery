@@ -1,29 +1,22 @@
 #!/usr/bin/env python3
 
+from random import random, randint, choice
+
 from ete4 import Tree
-from ete4.smartview import TreeLayout, CircleFace
-import random
+from ete4.smartview import Layout, DEFAULT_LAYOUT, Decoration, CircleFace
 
 t = Tree()
-t.populate(20, dist_fn=random.random, support_fn=random.random)
+t.populate(20, dist_fn=random, support_fn=random)
 
-# List of colors
-colors = ['red', 'blue', 'green']
+colors = ['red', 'blue', 'green']  # color to choose from
 
-def get_face(node):
+def node_decorations(node):
     if node.is_leaf:
-        random_number = random.randint(2, 20)
-        selected_color = random.choice(colors)
-        face = CircleFace(
-            radius=random_number, color=selected_color, name="circle_face",
-            padding_x=2, padding_y=2, tooltip=None)
-        node.add_face(face, position='aligned', column=1)
-    return
+        face = CircleFace(rmax=randint(2, 20),
+                          style={'fill': choice(colors)})
+        yield Decoration(face, position='aligned')
 
+circles_layout = Layout(name='circles', node_decos=node_decorations)
 
-layouts = [
-    TreeLayout(name='circle', ns=get_face, aligned_faces=True),
-]
-
-t.explore(layouts=layouts)
+t.explore(layouts=[DEFAULT_LAYOUT, circles_layout])
 input('Tree explorer running. Press enter to stop the server and finish.')
