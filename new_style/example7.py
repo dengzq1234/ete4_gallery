@@ -7,8 +7,7 @@ Use of node_style(node, collapsed), and is_leaf_fn().
 from random import random
 
 from ete4 import Tree
-from ete4.smartview import Layout, DEFAULT_LAYOUT, Decoration, BoxFace
-from ete4.smartview import PropFace, TextFace
+from ete4.smartview import Layout, DEFAULT_LAYOUT, Decoration, BoxFace, TextFace
 
 
 t = Tree()
