@@ -7,7 +7,7 @@ Tree style and node style with many options.
 from random import random
 
 from ete4 import Tree
-from ete4.smartview import (Layout, DEFAULT_LAYOUT, Decoration, BoxFace,
+from ete4.smartview import (Layout, BASIC_LAYOUT, Decoration, BoxFace,
                             PropFace, TextFace)
 
 
@@ -64,10 +64,7 @@ layout = Layout(name='many',
                 tree_style=tree_style,
                 node_style=node_style)
 
-def too_deep(node):
-    return node.level > 5
-
-t.explore(layouts=[DEFAULT_LAYOUT, layout], is_leaf_fn=too_deep)
+t.explore(layouts=[BASIC_LAYOUT, layout])
 
 print('Press enter to stop the server and finish.')
 input()

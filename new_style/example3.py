@@ -51,9 +51,9 @@ input()
 print('To use the default layout too (with leaf names, branch distance and '
       'support), we can add it explicitely when exploring the tree.')
 
-from ete4.smartview import DEFAULT_LAYOUT
+from ete4.smartview import BASIC_LAYOUT
 
-t.explore('default layout and our layout', layouts=[DEFAULT_LAYOUT, layout])
+t.explore('default layout and our layout', layouts=[BASIC_LAYOUT, layout])
 
 print('Press enter to stop the server and finish.')
 input()

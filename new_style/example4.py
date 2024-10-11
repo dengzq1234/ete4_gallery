@@ -7,7 +7,7 @@ Layout using the node_style() function.
 from random import random
 
 from ete4 import Tree
-from ete4.smartview import Layout, DEFAULT_LAYOUT, TextFace
+from ete4.smartview import Layout, BASIC_LAYOUT, TextFace
 
 
 t = Tree()
@@ -21,7 +21,7 @@ def node_style(node):
 
 layout = Layout(name='simple text on leaves', node_style=node_style)
 
-t.explore(layouts=[DEFAULT_LAYOUT, layout])
+t.explore(layouts=[BASIC_LAYOUT, layout])
 
 print('Press enter to stop the server and finish.')
 input()
