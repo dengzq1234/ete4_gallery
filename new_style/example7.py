@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Use of node_style(node, collapsed), and is_leaf_fn().
+Use of draw_node(node, collapsed), and is_leaf_fn().
 """
 
 from random import random
@@ -30,7 +30,7 @@ tree_style = {
 }
 
 
-def node_style(node, collapsed):
+def draw_node(node, collapsed):
     if node.is_leaf:
         yield {'box': 'leaf',
                'dot': {'fill': 'red'}}
@@ -47,8 +47,8 @@ def node_style(node, collapsed):
 
 
 rects_layout = Layout(name='rects',
-                      tree_style=tree_style,
-                      node_style=node_style)
+                      draw_tree=tree_style,
+                      draw_node=draw_node)
 
 
 t.explore(layouts=[BASIC_LAYOUT, rects_layout])

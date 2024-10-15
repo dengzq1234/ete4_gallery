@@ -36,7 +36,7 @@ tree_style = {
 }
 
 
-layout = Layout('example_tree_style', tree_style=tree_style)
+layout = Layout('example_tree_style', draw_tree=tree_style)
 
 t.explore('only our layout', layouts=[layout])
 

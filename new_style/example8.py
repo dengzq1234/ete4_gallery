@@ -18,10 +18,16 @@ for node in t.traverse():
     node.props['coolness'] = random()
 
 
+def too_deep(node):
+    return node.level > 5
+
+
 tree_style = {
     'shape': 'circular',
+    'limits': (2, 0, -90, 90),
+    'is-leaf-fn': too_deep,
     'min-size': 15,
-    'dot': {'shape': "square", 'radius': 10, 'fill': 'green'},
+    'dot': {'shape': 'none'}, # {'radius': 10, 'fill': 'green'},
     'hz-line': {'stroke': 'red', 'stroke-width': 5},
     'vt-line': {'stroke': '#ffff00', 'stroke-width': 3},
     'box': {'fill': '#e0e0e0'},
@@ -32,7 +38,7 @@ tree_style = {
 }
 
 
-def node_style(node, collapsed):
+def draw_node(node, collapsed):
     yield Decoration(TextFace('visited node'), position='bottom')
 
     yield Decoration(PropFace('coolness', fmt='%.2g',
@@ -61,8 +67,8 @@ def node_style(node, collapsed):
 
 
 layout = Layout(name='many',
-                tree_style=tree_style,
-                node_style=node_style)
+                draw_tree=tree_style,
+                draw_node=draw_node)
 
 t.explore(layouts=[BASIC_LAYOUT, layout])
 
