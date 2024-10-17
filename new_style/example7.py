@@ -20,8 +20,8 @@ def too_deep(node):
     return node.level > 4
 
 tree_style = {
-    'include-props': None,
-    'exclude-props': ['dist'],
+    'show-popup-props': None,
+    'hide-popup-props': ['dist'],
     'is-leaf-fn': too_deep,
     'box': {'fill': 'blue', 'opacity': 0.1},
     'aliases': {
