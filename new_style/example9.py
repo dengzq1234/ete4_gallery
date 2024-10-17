@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Tree style and node style with many options.
+Tree style and node style with many options passed as arguments to explore().
 """
 
 import random
@@ -22,31 +22,7 @@ for node in t.traverse():
     node.props['coolness'] = random.random()
 
 
-# Custom layout, with draw_tree and draw_node.
-
-def too_deep(node):
-    return node.level > 5
-
-tree_style = {
-    'shape': 'circular',
-    'radius': 2,
-    'angle-start': -120,
-    'angle-end': 120,
-    'is-leaf-fn': too_deep,
-    'show-popup-props': None,  # all available
-    'hide-popup-props': ['dist'],
-    'min-node-height': 15,
-    'dot': {'shape': 'none'}, # {'radius': 10, 'fill': 'green'},
-    'hz-line': {'stroke': 'red', 'stroke-width': 5},
-    'vt-line': {'stroke': '#ffff00', 'stroke-width': 3},
-    'box': {'fill': '#e0e0e0'},
-    'aliases': {
-        'support': {'fill': 'green'},  # used in default layout's support
-        'myblue': {'fill': 'blue', 'font-weight': 'bold'},
-    }
-}
-
-
+# Custom layout
 def draw_node(node, collapsed):
     yield Decoration(TextFace('visited node'), position='bottom')
 
@@ -75,14 +51,28 @@ def draw_node(node, collapsed):
         yield Decoration(face, position='aligned')
 
 
-layout = Layout(name='many',
-                draw_tree=tree_style,
-                draw_node=draw_node)
+layout = Layout(name='many', draw_node=draw_node)
 
 
-# Explore tree using basic layout and custom layout.
+# Explore tree using basic layout and custom layout, and extra arguments.
 
-t.explore(layouts=[BASIC_LAYOUT, layout])
+t.explore(layouts=[BASIC_LAYOUT, layout],
+          shape='circular',
+          radius=2,
+          angle_start=-120,
+          angle_end=120,
+          is_leaf_fn=lambda node: node.level > 5,
+          show_popup_props=None,  # all available
+          hide_popup_props=['dist'],
+          min_node_height=15,
+          dot={'shape': 'none'},
+          hz_line={'stroke': 'red', 'stroke-width': 5},
+          vt_line={'stroke': '#ffff00', 'stroke-width': 3},
+          box={'fill': '#e0e0e0'},
+          aliases={
+              'support': {'fill': 'green'},  # used in default layout's support
+              'myblue': {'fill': 'blue', 'font-weight': 'bold'},
+          })
 
 print('Press enter to stop the server and finish.')
 input()
