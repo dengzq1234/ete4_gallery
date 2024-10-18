@@ -38,12 +38,13 @@ tree_style = {
     'node-height-min': 15,
     'content-height-min': 10,
     'dot': {'shape': 'none'}, # {'radius': 10, 'fill': 'green'},
-    'hz-line': {'stroke': 'red', 'stroke-width': 5},
+    'hz-line': 'wide-red',
     'vt-line': {'stroke': '#ffff00', 'stroke-width': 3},
     'box': {'fill': '#e0e0e0'},
     'aliases': {
         'support': {'fill': 'green'},  # used in default layout's support
         'myblue': {'fill': 'blue', 'font-weight': 'bold'},
+        'wide-red': {'stroke': 'red', 'stroke-width': 5},
     }
 }
 

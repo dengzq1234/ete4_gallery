@@ -67,12 +67,13 @@ t.explore(layouts=[BASIC_LAYOUT, layout],
           node_height_min=15,
           content_height_min=10,
           dot={'shape': 'none'},
-          hz_line={'stroke': 'red', 'stroke-width': 5},
+          hz_line='wide-red',
           vt_line={'stroke': '#ffff00', 'stroke-width': 3},
           box={'fill': '#e0e0e0'},
           aliases={
               'support': {'fill': 'green'},  # used in default layout's support
               'myblue': {'fill': 'blue', 'font-weight': 'bold'},
+              'wide-red': {'stroke': 'red', 'stroke-width': 5},
           })
 
 print('Press enter to stop the server and finish.')
