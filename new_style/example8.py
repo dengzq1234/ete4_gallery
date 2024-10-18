@@ -35,7 +35,8 @@ tree_style = {
     'is-leaf-fn': too_deep,
     'show-popup-props': None,  # all available
     'hide-popup-props': ['dist'],
-    'min-node-height': 15,
+    'node-height-min': 15,
+    'content-height-min': 10,
     'dot': {'shape': 'none'}, # {'radius': 10, 'fill': 'green'},
     'hz-line': {'stroke': 'red', 'stroke-width': 5},
     'vt-line': {'stroke': '#ffff00', 'stroke-width': 3},
