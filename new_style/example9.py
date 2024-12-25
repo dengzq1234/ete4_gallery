@@ -31,7 +31,7 @@ def draw_node(node, collapsed):
                      position='bottom', column=1, anchor=(1, -1))
 
     if node.is_leaf:
-        yield {'box': {'border': '4px',
+        yield {'box': {'stroke-width': '4px',
                        'stroke': 'blue',
                        'fill': 'green'},
                'dot': {'fill': 'red',
