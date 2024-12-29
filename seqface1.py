@@ -13,11 +13,11 @@ from read_data import read_seqs
 
 
 # Read an example tree.
-t = Tree(open('../example_data/tree.nw'))
+t = Tree(open('example_data/tree.nw'))
 
 
 # Read related alignments and annotate the tree with them.
-seqs = read_seqs('../example_data/tree.aln.faa')
+seqs = read_seqs('example_data/tree.aln.faa')
 
 for node in t.leaves():
     node.props['seq'] = seqs[node.name]
