@@ -54,6 +54,6 @@ def get_face(prop):
 layouts = [
     TreeLayout(name='text face with nodename', ns=get_face('name'), aligned_faces=True),
 ]
-
+t.render("textface.png", dpi=300)
 t.explore(layouts=layouts)
 input('Tree explorer running. Press enter to stop the server and finish.\n')

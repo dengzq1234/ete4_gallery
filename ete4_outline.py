@@ -6,9 +6,8 @@ from ete4 import Tree
 from ete4.smartview import TreeLayout, OutlineFace
 
 
-t = Tree()
-t.populate(20, dist_fn=random.random, support_fn=random.random)
-
+t = Tree(open("example_data/tree.nw"),parser=1)
+#t.populate(20, dist_fn=random.random, support_fn=random.random)
 def layout_outline(node):
     color="green"
     if not node.is_root:
